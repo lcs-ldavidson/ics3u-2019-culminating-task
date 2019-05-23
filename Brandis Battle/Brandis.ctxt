@@ -17,4 +17,6 @@ comment7.params=jumpStrength
 comment7.target=void\ jump(int)
 comment8.params=
 comment8.target=void\ enforceGravity()
-numComments=9
+comment9.params=
+comment9.target=void\ checkForPlatform()
+numComments=10

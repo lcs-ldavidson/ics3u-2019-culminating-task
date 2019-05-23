@@ -14,13 +14,14 @@ public class Brandis extends Collision
     int xMovement;
     int yMovement;
     int gravity;
-    
+    boolean isOnPlatform;
+
     String direction = "Right";
     String[] sprite = {"Brandis-0-" + direction + ".png", "Brandis-1-" + direction + ".png", "Brandis-2-" + direction + ".png"};
 
     public Brandis() {
         gravity = 1;
-        
+
     }
 
     public void act() 
@@ -33,6 +34,7 @@ public class Brandis extends Collision
         if (Greenfoot.isKeyDown("up")) {
             jump(14);
         }
+        checkForPlatform();
         enforceGravity();
         setLocation(getX() + xMovement, getY() + yMovement);
         timeElapsed += 1;
@@ -87,8 +89,24 @@ public class Brandis extends Collision
     void jump(int jumpStrength) {
         yMovement -= jumpStrength;
     }
-    
+
     void enforceGravity() {
-        yMovement += gravity;
+        if (isOnPlatform == false) {
+            yMovement += gravity;
+        }
     }
+
+    void checkForPlatform() {
+
+        if (isTouching(Platform.class)) {
+            if (getY() <= getOneIntersectingObject(Platform.class).getY() - getImage().getHeight()/2 ){
+                isOnPlatform = true;
+                yMovement = 0;
+            } 
+        } else {
+            isOnPlatform = false;
+        }
+
+    }
+
 }
