@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=Brandis
+comment0.text=\n\ Write\ a\ description\ of\ class\ Brandis\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=Brandis()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ animate()
+comment4.params=
+comment4.target=void\ controlMovement()
+comment5.params=acceleration\ maxSpeed
+comment5.target=void\ changeSpeed(int,\ int)
+comment6.params=
+comment6.target=void\ enforceFriction()
+comment7.params=jumpStrength
+comment7.target=void\ jump(int)
+comment8.params=
+comment8.target=void\ enforceGravity()
+numComments=9
