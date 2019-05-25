@@ -17,6 +17,7 @@ public class Brandis extends Collision
     boolean isOnPlatform;
     Deltesia delta = (Deltesia)getWorld();
     boolean isOnGround;
+    boolean canThrow;
 
     String direction = "Right";
     String[] sprite = {"Brandis-0-" + direction + ".png", "Brandis-1-" + direction + ".png", "Brandis-2-" + direction + ".png"};
@@ -24,7 +25,7 @@ public class Brandis extends Collision
 
     public Brandis() {
         gravity = 1;
-
+        canThrow = true;
     }
 
     public void act() 
@@ -138,6 +139,10 @@ public class Brandis extends Collision
         }
         jumpSprite[0] = "Brandis-Up-" + direction + ".png";
         jumpSprite[1] = "Brandis-Down-" + direction + ".png";
+    }
+    
+    void throwRock() {
+        
     }
 
 }

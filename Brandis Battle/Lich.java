@@ -11,6 +11,7 @@ public class Lich extends Collision
     int timeElapsed = 0;
     int walkCycle = 0;
     int speed = 4;
+    int yMovement;
     String direction = "Right";
     String[] sprite = {"Lich-1.png", "Lich-2.png", "Lich-3.png"};
 
@@ -20,7 +21,8 @@ public class Lich extends Collision
     public void act() 
     {
         animate();
-        setLocation(getX(), getY() + Greenfoot.getRandomNumber(21) - 10);
+        alterMovement();
+        setLocation(getX(), getY() + yMovement);
         timeElapsed += 1;
     }  
 
@@ -32,5 +34,18 @@ public class Lich extends Collision
                 walkCycle = 0;
             }
         }
+        
+        
+    }  
+    
+    void alterMovement() {
+        if (timeElapsed % 20 == 0) {
+            yMovement = Greenfoot.getRandomNumber(10) - 5;
+        }
+        
+        if (isAtEdge()) {
+            yMovement = -yMovement * 2;
+        }
     }
+    
 }
