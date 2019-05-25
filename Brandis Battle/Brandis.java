@@ -37,6 +37,9 @@ public class Brandis extends Collision
         if (Greenfoot.isKeyDown("up") && isOnPlatform) {
             jump(20);
         }
+        if (Greenfoot.isKeyDown("space")) {
+            throwRock();
+        }
         checkForPlatform();
         enforceGravity();
         setLocation(getX() + xMovement, getY() + yMovement);
@@ -140,9 +143,12 @@ public class Brandis extends Collision
         jumpSprite[0] = "Brandis-Up-" + direction + ".png";
         jumpSprite[1] = "Brandis-Down-" + direction + ".png";
     }
-    
+
     void throwRock() {
-        
+        if (canThrow == true) {
+            getWorld().addObject(new Rock(direction), getX(), getY());
+        }
+        canThrow = false;
     }
 
 }
