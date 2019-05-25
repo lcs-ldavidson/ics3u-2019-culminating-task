@@ -14,6 +14,7 @@ public class Deltesia extends World
      * 
      */
     Brandis brandis = new Brandis();
+    Ground ground = new Ground();
 
     public Deltesia()
     {    
@@ -31,16 +32,15 @@ public class Deltesia extends World
      */
     private void prepare()
     {
-        Ground ground = new Ground();
         addObject(ground,447,678);
         Tree tree = new Tree();
         addObject(tree,183,327);
         Grass grass = new Grass();
-        addObject(grass,444,631);
+        addObject(grass,444,650);
 
         addObject(brandis,406,583);
         Platform platform = new Platform();
-        addObject(platform,290,501);
+        addObject(platform,330,501);
         Platform platform2 = new Platform();
         addObject(platform2,95,369);
         Platform platform3 = new Platform();

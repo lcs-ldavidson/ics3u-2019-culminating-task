@@ -20,7 +20,7 @@ public class Lich extends Collision
     public void act() 
     {
         animate();
-        setLocation(getX() + Greenfoot.getRandomNumber(20) - 10, getY() + Greenfoot.getRandomNumber(20) - 10);
+        setLocation(getX(), getY() + Greenfoot.getRandomNumber(21) - 10);
         timeElapsed += 1;
     }  
 

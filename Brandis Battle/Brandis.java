@@ -15,9 +15,12 @@ public class Brandis extends Collision
     int yMovement;
     int gravity;
     boolean isOnPlatform;
+    Deltesia delta = (Deltesia)getWorld();
+    boolean isOnGround;
 
     String direction = "Right";
     String[] sprite = {"Brandis-0-" + direction + ".png", "Brandis-1-" + direction + ".png", "Brandis-2-" + direction + ".png"};
+    String[] jumpSprite = {"Brandis-Up-" + direction + ".png", "Brandis-Down-" + direction + ".png"};
 
     public Brandis() {
         gravity = 1;
@@ -26,13 +29,12 @@ public class Brandis extends Collision
 
     public void act() 
     {
-        for (int i = 0; i < 3; i++) {
-            sprite[i] = "Brandis-" + i + "-" + direction + ".png";
-        }
+        changeImages();
+
         controlMovement();
         enforceFriction();
-        if (Greenfoot.isKeyDown("up")) {
-            jump(14);
+        if (Greenfoot.isKeyDown("up") && isOnPlatform) {
+            jump(20);
         }
         checkForPlatform();
         enforceGravity();
@@ -41,13 +43,18 @@ public class Brandis extends Collision
     }  
 
     void animate() {
-        if (timeElapsed % 7 == 0) {
+        if (timeElapsed % 6 == 0 && isOnPlatform) {
             setImage(sprite[walkCycle]);
             walkCycle += 1;
             if (walkCycle >= 3) {
                 walkCycle = 0;
             }
+        } else if (!isOnPlatform && yMovement <= 0) {
+            setImage(jumpSprite[0]);
+        } else if (!isOnPlatform && yMovement > 0) {
+            setImage(jumpSprite[1]);
         }
+
     }
 
     void controlMovement() {
@@ -60,7 +67,11 @@ public class Brandis extends Collision
             direction = "Left";
             animate();
         } else {
-            setImage(sprite[0]);
+            if (isOnPlatform) {
+                setImage(sprite[0]);
+            } else {
+                animate();
+            }
         }
     }
 
@@ -87,26 +98,46 @@ public class Brandis extends Collision
     }
 
     void jump(int jumpStrength) {
+        setLocation(getX(), getY() - 10);
         yMovement -= jumpStrength;
     }
 
     void enforceGravity() {
         if (isOnPlatform == false) {
             yMovement += gravity;
+        } else {
+            yMovement = 0;
         }
     }
 
     void checkForPlatform() {
 
         if (isTouching(Platform.class)) {
-            if (getY() <= getOneIntersectingObject(Platform.class).getY() - getImage().getHeight()/2 ){
+            if (getY() <= getOneIntersectingObject(Platform.class).getY() - getImage().getHeight()/2 && yMovement >= 0){
                 isOnPlatform = true;
                 yMovement = 0;
-            } 
+            } else {
+                isOnPlatform = false;
+            }
         } else {
             isOnPlatform = false;
         }
 
+        if (isTouching(Platform.class) == false) {
+            if (isTouching(Ground.class)) {
+                isOnPlatform = true;
+            } else {
+                isOnPlatform = false;
+            }
+        }
+    }
+
+    void changeImages() {
+        for (int i = 0; i < 3; i++) {
+            sprite[i] = "Brandis-" + i + "-" + direction + ".png";
+        }
+        jumpSprite[0] = "Brandis-Up-" + direction + ".png";
+        jumpSprite[1] = "Brandis-Down-" + direction + ".png";
     }
 
 }
