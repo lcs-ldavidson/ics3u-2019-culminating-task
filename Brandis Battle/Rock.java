@@ -10,6 +10,7 @@ public class Rock extends Collision
 {
     int xMovement;
     int yMovement;
+    int timeElapsed = 0;
     
     public Rock(String direction) {
         if (direction == "Left") {
@@ -17,11 +18,14 @@ public class Rock extends Collision
         } else if (direction == "Right") {
             xMovement = 15;
         }
-        yMovement = -10;
+        
     }
     
     public void act() 
     {
+        if (timeElapsed == 0) {
+            yMovement = -5 + ((Deltesia)getWorld()).brandis.yMovement;
+        }
         setLocation(getX() + xMovement, getY() + yMovement);
         yMovement++;
         turn(xMovement);
@@ -29,5 +33,6 @@ public class Rock extends Collision
             ((Deltesia)getWorld()).brandis.canThrow = true;
             getWorld().removeObject(this);
         }
+        timeElapsed++;
     }    
 }

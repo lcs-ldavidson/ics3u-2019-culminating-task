@@ -15,6 +15,7 @@ public class Deltesia extends World
      */
     Brandis brandis = new Brandis();
     Ground ground = new Ground();
+    Lich lich = new Lich();
 
     public Deltesia()
     {    

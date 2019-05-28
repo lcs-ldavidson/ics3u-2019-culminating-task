@@ -12,6 +12,8 @@ public class Lich extends Collision
     int walkCycle = 0;
     int speed = 4;
     int yMovement;
+    boolean canTakeDamage = true;
+    int health = 100;
     String direction = "Right";
     String[] sprite = {"Lich-1.png", "Lich-2.png", "Lich-3.png"};
 
@@ -22,7 +24,9 @@ public class Lich extends Collision
     {
         animate();
         alterMovement();
+        getWorld().showText("LICH HEALTH: " + health, 750, 30);
         setLocation(getX(), getY() + yMovement);
+        getHit();
         timeElapsed += 1;
     }  
 
@@ -40,7 +44,13 @@ public class Lich extends Collision
     
     void alterMovement() {
         if (timeElapsed % 20 == 0) {
-            yMovement = Greenfoot.getRandomNumber(10) - 5;
+            yMovement = Greenfoot.getRandomNumber(20) - 10;
+        }
+        
+        if (getY() < ((Deltesia)getWorld()).brandis.getY()) {
+            yMovement += Greenfoot.getRandomNumber(1);
+        } else {
+            yMovement -= Greenfoot.getRandomNumber(1);
         }
         
         if (isAtEdge()) {
@@ -48,4 +58,18 @@ public class Lich extends Collision
         }
     }
     
+    void getHit() {
+        if (canTakeDamage && touch(Rock.class)) {
+            setImage("hurt.png");
+            ((Deltesia)getWorld()).brandis.canThrow = true;
+            getWorld().removeObject(getOneTouchedObject(Rock.class));
+            health -= 5;
+        }
+    }
+    
+    void createShield() {
+        if (timeElapsed % 100 == 0) {
+            getWorld().addObject(new Lightning(), getX(), getY());
+        }
+    }
 }
