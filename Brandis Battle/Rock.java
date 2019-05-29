@@ -29,7 +29,7 @@ public class Rock extends Collision
         setLocation(getX() + xMovement, getY() + yMovement);
         yMovement++;
         turn(xMovement);
-        if (getY() == 699) {
+        if (getY() == 699 || touch(Lightning.class)) {
             ((Deltesia)getWorld()).brandis.canThrow = true;
             getWorld().removeObject(this);
         }

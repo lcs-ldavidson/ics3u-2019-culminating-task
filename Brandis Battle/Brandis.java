@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Brandis extends Collision
 {
+    //create variables
     int timeElapsed = 0;
     int walkCycle = 0;
     int speed = 4;
@@ -20,6 +21,7 @@ public class Brandis extends Collision
     boolean canThrow;
 
     String direction = "Right";
+    //arrays
     String[] sprite = {"Brandis-0-" + direction + ".png", "Brandis-1-" + direction + ".png", "Brandis-2-" + direction + ".png"};
     String[] jumpSprite = {"Brandis-Up-" + direction + ".png", "Brandis-Down-" + direction + ".png"};
 

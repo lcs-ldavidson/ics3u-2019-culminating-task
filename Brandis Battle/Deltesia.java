@@ -15,7 +15,7 @@ public class Deltesia extends World
      */
     Brandis brandis = new Brandis();
     Ground ground = new Ground();
-    Lich lich = new Lich();
+    Lich lich1 = new Lich();
 
     public Deltesia()
     {    
@@ -24,7 +24,7 @@ public class Deltesia extends World
         prepare();
         Greenfoot.setSpeed(50);
 
-        setPaintOrder(Grass.class, Rock.class, Brandis.class, Platform.class, Lich.class, Ground.class, Tree.class);
+        setPaintOrder(Grass.class, Rock.class, Brandis.class, Platform.class, Lightning.class, Lich.class, Ground.class, Tree.class);
     }
 
     /**
@@ -46,7 +46,7 @@ public class Deltesia extends World
         addObject(platform2,95,369);
         Platform platform3 = new Platform();
         addObject(platform3,300,238);
-        Lich lich = new Lich();
-        addObject(lich,759,164);
+
+        addObject(lich1,759,164);
     }
 }

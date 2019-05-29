@@ -27,6 +27,8 @@ public class Lich extends Collision
         getWorld().showText("LICH HEALTH: " + health, 750, 30);
         setLocation(getX(), getY() + yMovement);
         getHit();
+        createShield();
+        die();
         timeElapsed += 1;
     }  
 
@@ -48,9 +50,9 @@ public class Lich extends Collision
         }
         
         if (getY() < ((Deltesia)getWorld()).brandis.getY()) {
-            yMovement += Greenfoot.getRandomNumber(1);
+            yMovement += Greenfoot.getRandomNumber(2);
         } else {
-            yMovement -= Greenfoot.getRandomNumber(1);
+            yMovement -= Greenfoot.getRandomNumber(2);
         }
         
         if (isAtEdge()) {
@@ -68,8 +70,15 @@ public class Lich extends Collision
     }
     
     void createShield() {
-        if (timeElapsed % 100 == 0) {
+        if (timeElapsed % 150 == 0) {
             getWorld().addObject(new Lightning(), getX(), getY());
+        }
+    }
+    
+    void die() {
+        if (health <= 0) {
+            getWorld().showText("The Lich has been defeated! You win!", 450, 50);
+            Greenfoot.stop();
         }
     }
 }
