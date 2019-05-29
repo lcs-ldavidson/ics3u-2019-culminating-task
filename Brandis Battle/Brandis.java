@@ -20,6 +20,7 @@ public class Brandis extends Collision
     boolean isOnGround;
     boolean canThrow;
     int health = 100;
+    GreenfootSound jumpSound = new GreenfootSound("jump.wav");
 
     String direction = "Right";
     //arrays
@@ -29,6 +30,7 @@ public class Brandis extends Collision
     public Brandis() {
         gravity = 1;
         canThrow = true;
+        jumpSound.setVolume(90);
     }
 
     public void act() 
@@ -36,8 +38,11 @@ public class Brandis extends Collision
         changeImages();
 
         controlMovement();
-        enforceFriction();
+        if (isOnPlatform == true) {
+            enforceFriction();
+        }
         if (Greenfoot.isKeyDown("up") && isOnPlatform) {
+            jumpSound.play();
             jump(20);
         }
         if (Greenfoot.isKeyDown("space")) {
@@ -47,6 +52,7 @@ public class Brandis extends Collision
         checkForPlatform();
         enforceGravity();
         getHit();
+        getHitByLich();
         die();
         setLocation(getX() + xMovement, getY() + yMovement);
         timeElapsed += 1;
@@ -156,7 +162,7 @@ public class Brandis extends Collision
         }
         canThrow = false;
     }
-    
+
     void getHit() {
         if (touch(Lightning.class)) {
             health -= 20;
@@ -164,7 +170,14 @@ public class Brandis extends Collision
             xMovement -= 30;
         }
     }
-    
+
+    void getHitByLich() {
+        if (touch(Lich.class)) {
+            health -= 20;
+            xMovement -= 60;
+        }
+    }
+
     void die() {
         if (health <= 0) {
             getWorld().showText("The Lich has defeated you! You lose!", 450, 50);

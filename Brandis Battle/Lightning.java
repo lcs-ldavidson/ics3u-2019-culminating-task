@@ -38,7 +38,8 @@ public class Lightning extends Collision
             if (walkCycle >= 3) {
                 walkCycle = 0;
             }
+            turn(Greenfoot.getRandomNumber(360));
         }
-        turn(Greenfoot.getRandomNumber(10));
+        
     }    
 }

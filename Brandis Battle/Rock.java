@@ -33,6 +33,8 @@ public class Rock extends Collision
             ((Deltesia)getWorld()).brandis.canThrow = true;
             getWorld().removeObject(this);
         }
+        
+        
         timeElapsed++;
     }    
 }

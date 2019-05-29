@@ -16,6 +16,9 @@ public class Deltesia extends World
     Brandis brandis = new Brandis();
     Ground ground = new Ground();
     Lich lich1 = new Lich();
+    int timeElapsed = 0;
+    
+    GreenfootSound music = new GreenfootSound("retro-music.mp3");
 
     public Deltesia()
     {    
@@ -23,8 +26,17 @@ public class Deltesia extends World
         super(900, 700, 1); 
         prepare();
         Greenfoot.setSpeed(50);
+        music.setVolume(100);
+        
 
         setPaintOrder(Lightning.class, Grass.class, Rock.class, Brandis.class, Platform.class, Lich.class, Ground.class, Tree.class);
+    }
+    
+    public void act() {
+        if (timeElapsed == 0) {
+            music.playLoop();
+        }
+        timeElapsed++;
     }
 
     /**
@@ -33,12 +45,13 @@ public class Deltesia extends World
      */
     private void prepare()
     {
+        
         addObject(ground,447,678);
         Tree tree = new Tree();
         addObject(tree,183,327);
         Grass grass = new Grass();
         addObject(grass,444,650);
-
+        
         addObject(brandis,406,583);
         Platform platform = new Platform();
         addObject(platform,330,501);
