@@ -31,6 +31,7 @@ public class Brandis extends Collision
         gravity = 1;
         canThrow = true;
         jumpSound.setVolume(90);
+        
     }
 
     public void act() 
