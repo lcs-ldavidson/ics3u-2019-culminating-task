@@ -19,6 +19,7 @@ public class Brandis extends Collision
     Deltesia delta = (Deltesia)getWorld();
     boolean isOnGround;
     boolean canThrow;
+    int health = 100;
 
     String direction = "Right";
     //arrays
