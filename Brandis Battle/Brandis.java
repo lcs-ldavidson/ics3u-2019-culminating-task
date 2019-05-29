@@ -43,6 +43,7 @@ public class Brandis extends Collision
         if (Greenfoot.isKeyDown("space")) {
             throwRock();
         }
+        getWorld().showText("BRANDIS HEALTH: " + health, 150, 30);
         checkForPlatform();
         enforceGravity();
         setLocation(getX() + xMovement, getY() + yMovement);
