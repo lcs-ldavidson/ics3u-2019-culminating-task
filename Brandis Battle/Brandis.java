@@ -46,6 +46,8 @@ public class Brandis extends Collision
         getWorld().showText("BRANDIS HEALTH: " + health, 150, 30);
         checkForPlatform();
         enforceGravity();
+        getHit();
+        die();
         setLocation(getX() + xMovement, getY() + yMovement);
         timeElapsed += 1;
     }  
@@ -153,6 +155,22 @@ public class Brandis extends Collision
             getWorld().addObject(new Rock(direction), getX(), getY());
         }
         canThrow = false;
+    }
+    
+    void getHit() {
+        if (touch(Lightning.class)) {
+            health -= 20;
+            getWorld().removeObject(getOneTouchedObject(Lightning.class));
+            xMovement -= 30;
+        }
+    }
+    
+    void die() {
+        if (health <= 0) {
+            getWorld().showText("The Lich has defeated you! You lose!", 450, 50);
+            getWorld().showText("BRANDIS HEALTH: " + health, 150, 30);
+            Greenfoot.stop();
+        }
     }
 
 }

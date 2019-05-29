@@ -24,7 +24,7 @@ public class Deltesia extends World
         prepare();
         Greenfoot.setSpeed(50);
 
-        setPaintOrder(Grass.class, Rock.class, Brandis.class, Platform.class, Lightning.class, Lich.class, Ground.class, Tree.class);
+        setPaintOrder(Lightning.class, Grass.class, Rock.class, Brandis.class, Platform.class, Lich.class, Ground.class, Tree.class);
     }
 
     /**

@@ -70,7 +70,7 @@ public class Lich extends Collision
     }
     
     void createShield() {
-        if (timeElapsed % 150 == 0) {
+        if (timeElapsed % 150 == 0 || getObjectsInRange(1000, Lightning.class) == null) {
             getWorld().addObject(new Lightning(), getX(), getY());
         }
     }
@@ -78,6 +78,7 @@ public class Lich extends Collision
     void die() {
         if (health <= 0) {
             getWorld().showText("The Lich has been defeated! You win!", 450, 50);
+            getWorld().showText("LICH HEALTH: " + health, 750, 30);
             Greenfoot.stop();
         }
     }
