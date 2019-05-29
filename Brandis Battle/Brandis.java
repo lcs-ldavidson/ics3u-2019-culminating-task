@@ -20,6 +20,7 @@ public class Brandis extends Collision
     boolean isOnGround;
     boolean canThrow;
     int health = 100;
+    //create jumping sound effect
     GreenfootSound jumpSound = new GreenfootSound("jump.wav");
 
     String direction = "Right";
@@ -28,35 +29,50 @@ public class Brandis extends Collision
     String[] jumpSprite = {"Brandis-Up-" + direction + ".png", "Brandis-Down-" + direction + ".png"};
 
     public Brandis() {
+        //set world's gravity value
         gravity = 1;
+        //can throw a rock from the start
         canThrow = true;
+        //set volume of jump
         jumpSound.setVolume(90);
         
     }
 
     public void act() 
     {
+        //constantly use a loop to set the necessary array values
         changeImages();
-
+        //control how Brandis moves
         controlMovement();
+        //slow down if on a platform
         if (isOnPlatform == true) {
             enforceFriction();
         }
+        //jump
         if (Greenfoot.isKeyDown("up") && isOnPlatform) {
             jumpSound.play();
             jump(20);
         }
+        //throw a rock
         if (Greenfoot.isKeyDown("space")) {
             throwRock();
         }
+        //display health
         getWorld().showText("BRANDIS HEALTH: " + health, 150, 30);
+        //see if you are on a platform currently
         checkForPlatform();
+        //drag down
         enforceGravity();
+        //see if you are touching lightning and take damage
         getHit();
+        //see if you are touching the Lich and take damage
         getHitByLich();
+        //check if you are dead
         die();
+        //change location to match where Brandis should be
         setLocation(getX() + xMovement, getY() + yMovement);
-        timeElapsed += 1;
+        //increase time that has passed
+        timeElapsed++;
     }  
 
     void animate() {

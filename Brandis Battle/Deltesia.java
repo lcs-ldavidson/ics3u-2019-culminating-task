@@ -9,37 +9,40 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Deltesia extends World
 {
 
-    /**
-     * Constructor for objects of class MyWorld.
-     * 
-     */
+    //create characters
     Brandis brandis = new Brandis();
-    Ground ground = new Ground();
     Lich lich1 = new Lich();
+    
+    Ground ground = new Ground();
     int timeElapsed = 0;
     
+    //make background music
     GreenfootSound music = new GreenfootSound("retro-music.mp3");
 
     public Deltesia()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        
         super(900, 700, 1); 
         prepare();
+        //set half speed
         Greenfoot.setSpeed(50);
+        //set full volume
         music.setVolume(100);
         
-
+        //specify what order sprites are drawn in
         setPaintOrder(Lightning.class, Grass.class, Rock.class, Brandis.class, Platform.class, Lich.class, Ground.class, Tree.class);
     }
     
     public void act() {
+        //play music at the start of the game
         if (timeElapsed == 0) {
             music.playLoop();
         }
-        
+        //stop if game is over
         if (lich1.health <= 0 || brandis.health <= 0) {
             music.stop();
         }
+        //increase time that has passed.
         timeElapsed++;
     }
 
