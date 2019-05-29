@@ -36,6 +36,10 @@ public class Deltesia extends World
         if (timeElapsed == 0) {
             music.playLoop();
         }
+        
+        if (lich1.health <= 0 || brandis.health <= 0) {
+            music.stop();
+        }
         timeElapsed++;
     }
 

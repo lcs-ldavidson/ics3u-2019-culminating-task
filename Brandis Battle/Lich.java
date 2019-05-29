@@ -79,6 +79,7 @@ public class Lich extends Collision
         if (health <= 0) {
             getWorld().showText("The Lich has been defeated! You win!", 450, 50);
             getWorld().showText("LICH HEALTH: " + health, 750, 30);
+            ((Deltesia)getWorld()).music.stop();
             Greenfoot.stop();
         }
     }

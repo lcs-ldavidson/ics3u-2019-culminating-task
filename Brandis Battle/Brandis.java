@@ -183,6 +183,7 @@ public class Brandis extends Collision
         if (health <= 0) {
             getWorld().showText("The Lich has defeated you! You lose!", 450, 50);
             getWorld().showText("BRANDIS HEALTH: " + health, 150, 30);
+            ((Deltesia)getWorld()).music.stop();
             Greenfoot.stop();
         }
     }
